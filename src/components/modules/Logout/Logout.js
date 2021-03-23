@@ -13,8 +13,12 @@ export default function Logout() {
 
     async function handleLogout() {
         try {
-            const response = await logout();
-            history.push("/login")
+            if (currentUser) {
+                const response = await logout();
+                if (response) {
+                    history.push("/login")
+                }
+            }
         } catch (e) {
             setError(e)
         }
