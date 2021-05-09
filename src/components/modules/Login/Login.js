@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { useAuth } from "../../../contexts/AuthContext";
 
 
@@ -103,6 +103,9 @@ export default function Login() {
                     Войти
                 </Button>
             </form>
+
+            <hr></hr>
+            <Link to="/registration">Регистрация аккаунта</Link>
         </Container>
     )
 }
