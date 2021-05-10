@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-import Button from '@material-ui/core/Button';
 import { useAuth } from "../../../contexts/AuthContext";
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from "@material-ui/lab/AlertTitle";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import { useHistory } from "react-router-dom"
 
@@ -30,9 +33,12 @@ export default function Logout() {
                 <AlertTitle>Error</AlertTitle>
                 This is an error alert — <strong>{error}</strong>
             </Alert>}
-            <Button  type="submit" onClick={handleLogout}>Выйти</Button>
+            <ListItem button onClick={handleLogout}>
+            <ListItemIcon>
+                <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText  primary="Выйти"/>
+            </ListItem>
         </>
-
     )
-
 }
