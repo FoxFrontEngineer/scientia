@@ -2,10 +2,10 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { AuthProvider } from "contexts/AuthContext";
 import PrivateRoute from "components/services/PrivateRoute/PrivateRoute";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Grid from '@material-ui/core/Grid';
 
+import AddIndicators from "components/ui/AddIndicators";
 import ComposeCharts from "components/ui/charts/ComposeCharts";
 import MenuSidebar from "components/ui/MenuSidebar";
 
@@ -26,13 +26,10 @@ export default function MainScreen() {
                     <MenuSidebar />
                 </Grid>
                 <Grid item xs={11}>
-                    <Router>
                         <AuthProvider>
-                            <Switch>
                                 <PrivateRoute path="/diagrams" component={ComposeCharts} />
-                            </Switch>
+                                <PrivateRoute path="/create-indicators" component={AddIndicators} />
                         </AuthProvider>
-                    </Router>
                 </Grid>
             </Grid>
         </div>

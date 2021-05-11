@@ -78,7 +78,7 @@ function MenuSidebar() {
     return icon;
   }
 
-  const links = ["/", "/diagrams", "/"];
+  const links = ["/create-indicators", "/diagrams", "/"];
 
   return (
     <div className={classes.root}>
