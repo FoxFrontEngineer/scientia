@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getEffective, getMostEffective } from "helpers/trainingEffective";
+// Redux imports
+import { useSelector, useDispatch } from "react-redux";
+import { fetchIndicators } from "store/indicators";
 
 import CaloriesChart from "components/ui/charts/CaloriesChart";
 import DistanceChart from "components/ui/charts/DistanceChart";
 import TimeCharts from "components/ui/charts/TimeChart";
 
 function ComposeCharts() {
+    const dispatch = useDispatch();
+    const { indicators } = useSelector((state) => state.indicators);
     const caloriesData = [{name: 'Понедельник', calories: 200, max: 800}, {name: 'Вторник', calories: 300}, {name: 'Среда', calories: 112}, 
     {name: 'Четверг', calories: 112}, {name: 'Пятница', calories: 112}, {name: 'Суббота', calories: 112}, {name: 'Воскресенье', calories: 112}];
 
@@ -14,6 +19,14 @@ function ComposeCharts() {
 
     const timeData = [{name: 'Понедельник', time: 20, max: 120}, {name: 'Вторник', time: 22}, {name: 'Среда', time: 25}, 
     {name: 'Четверг', time: 27}, {name: 'Пятница', time: 27}, {name: 'Суббота', time: 28}, {name: 'Воскресенье', time: 30}];
+
+    useEffect(() => {
+      dispatch(fetchIndicators())
+    }, [dispatch]);
+
+    useEffect(() => {
+      console.info("UseSelector: ", indicators)
+    }, [indicators]);
 
     const computeEffective = () => {
         const composeCaloriesWithDistance = [...caloriesData, ...distanceData, ...timeData];
